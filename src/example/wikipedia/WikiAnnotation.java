@@ -94,7 +94,8 @@ public class WikiAnnotation extends HadoopAnnotation {
 		newArgs.add("de.l3s.streamcorpus.mapreduce.WikiAnnotation$MyMapper");
 		
 		try {
-			ToolRunner.run(new WikiAnnotation(), args);
+			ToolRunner.run(new WikiAnnotation(), 
+					newArgs.toArray(new String[newArgs.size()]));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
