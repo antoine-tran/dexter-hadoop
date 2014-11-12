@@ -21,9 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,6 +91,9 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 	@Override
 	protected void map(KEYIN key, VALIN item, Context context) 
 			throws IOException, InterruptedException {		
+		
+		preAnnotations(key,item,keyOut,valOut);
+		
 		for (String content : contents(item)) {
 			MultifieldDocument doc = parseDocument(content, "text");		
 
@@ -109,11 +110,13 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 			}
 			
 			context.write(keyOut, valOut);
-		}
+		}		
 	}
 	
 	// Get different texts from a value (e.g. from different fields)
 	public abstract Iterable<String> contents(VALIN value);
+	
+	public abstract void preAnnotations(KEYIN keyIn, VALIN valIn, KEYOUT keyOut, VALOUT valOut);
 	
 	public abstract void consumeAnnotation(KEYOUT keyOut, VALOUT valOut, AnnotatedSpot spot);
 	
