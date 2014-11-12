@@ -3,9 +3,8 @@ H-Dexter
 
 H-Dexter is a small plugin to run [Dexter](http://dexter.isti.cnr.it) annotations in Hadoop MapReduce environment.
 
-1. Configuration: To be able to use this feature, first you have to store the configuration file dexter-conf.xml and the model files of Dexter in your shared locations (e.g. HDFS or HBase file). In dexter-conf.xml, please specify the full path of the model with the protocol (file:/// or http:// or hdfs://). For example, 
+1. Configuration: To be able to use this feature, first you have to store the configuration file dexter-conf.xml and the model files of Dexter in your shared locations (e.g. HDFS or HBase file). In dexter-conf.xml, specify the full path of the model with the protocol (file:/// or http:// or hdfs://). For example, 
 
-where the INPATH is the path in shared locations of your data (e.g. HDFS), OUTPATH is where you want to store the annotation results (CSV format: docid TAB [list of <entity,score> pairs]), and "dexter-conf" is the location of the configuration file dexter-conf.xml:
 
 ```
 <model>
@@ -13,6 +12,9 @@ where the INPATH is the path in shared locations of your data (e.g. HDFS), OUTPA
  <path>hdfs://[YOUR_HADOOP_CLUSTER_HOST]/[PATH-TO-English-model-directory]</path>
 </model>
 ```
+
+where the INPATH is the path in shared locations of your data (e.g. HDFS), OUTPATH is where you want to store the annotation results (CSV format: docid TAB [list of <entity,score> pairs]), and "dexter-conf" is the location of the configuration file dexter-conf.xml. If there is no protocol specified, it will assume the path to be in local file system.
+
 
 2. Adding parser: For each dataset, it is required the parser, where the text is extracted and pipelined to the map / reduce phase. In H-Dexter, this is done by implementing the interface <code>it.cnr.isti.hpc.dexter.hadoop.AnnotateMapper</code>. 
 
