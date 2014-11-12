@@ -94,6 +94,9 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 		
 		preAnnotations(key,item,keyOut,valOut);
 		
+		Iterable<String> contents = contents(item);
+		if (contents == null) return;
+		
 		for (String content : contents(item)) {
 			MultifieldDocument doc = parseDocument(content, "text");		
 
@@ -105,7 +108,6 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 			annotate(adoc, eml, entitiesToAnnotate, addWikinames, minConfidence);
 			
 			for (AnnotatedSpot spot : adoc.getSpots()) {			
-				// neds.add(spot.getEntity(), (float) spot.getScore());
 				consumeAnnotation(keyOut, valOut, spot);
 			}
 			
