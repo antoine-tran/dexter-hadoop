@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.cnr.isti.hpc</groupId>
-	<artifactId>h-dexter</artifactId>
+	<artifactId>dexter-hadoop</artifactId>
 	<name>StreamCorpus Tools</name>
 	<description>Hadoop toolkit for working with StreamCorpus</description>
 	<version>0.1-beta1</version>
