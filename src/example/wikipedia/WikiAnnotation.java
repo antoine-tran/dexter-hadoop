@@ -53,6 +53,12 @@ public class WikiAnnotation extends HadoopAnnotation {
 				IntFloatArrayListWritable valOut, AnnotatedSpot spot) {
 			valOut.add(spot.getEntity(), (float) spot.getScore());
 		}
+
+		@Override
+		public boolean postAnnotations(LongWritable keyOut,
+				IntFloatArrayListWritable valOut) {
+			return !valOut.isEmpty();
+		}
 		
 	}
 	

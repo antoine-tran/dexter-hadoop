@@ -111,7 +111,9 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 				consumeAnnotation(keyOut, valOut, spot);
 			}
 			
-			context.write(keyOut, valOut);
+			if (postAnnotations(keyOut, valOut)) {
+				context.write(keyOut, valOut);
+			}
 		}		
 	}
 	
@@ -121,6 +123,8 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 	public abstract void preAnnotations(KEYIN keyIn, VALIN valIn, KEYOUT keyOut, VALOUT valOut);
 	
 	public abstract void consumeAnnotation(KEYOUT keyOut, VALOUT valOut, AnnotatedSpot spot);
+	
+	public abstract boolean postAnnotations(KEYOUT keyOut, VALOUT valOut);
 	
 	public static MultifieldDocument parseDocument(String text, String format) {
 		Tagmeta.DocumentFormat df = Tagmeta.getDocumentFormat(format);
