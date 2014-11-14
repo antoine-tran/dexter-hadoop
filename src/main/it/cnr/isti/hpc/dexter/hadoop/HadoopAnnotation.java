@@ -190,8 +190,10 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public int run(String[] args) throws Exception {
+	public int run(String[] args) throws Exception {		
 		Job job = setup(args);
+		
+		System.out.println("Run with jar setting: " + job.getJar());
 		
 		// register the filesystem before starting
 		registerHDFS();
