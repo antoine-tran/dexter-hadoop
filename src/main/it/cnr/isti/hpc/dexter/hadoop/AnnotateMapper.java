@@ -68,8 +68,14 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 			}
 			dexterParams = DexterParams.getInstance();
 		}
+		
+
+		if (ned == null) {
+			ned = conf.get(DISAMB_HDFS_OPT);
+		}
+		
 		s = dexterParams.getSpotter("wiki-dictionary");
-		d = dexterParams.getDisambiguator("wikiminer");
+		d = dexterParams.getDisambiguator(ned);
 
 		tagger = new StandardTagger("std", s, d);
 		addWikinames = new Boolean("true");
@@ -77,10 +83,6 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 		entitiesToAnnotate = new Integer(50);
 		minConfidence = Double.parseDouble("0.1");
 
-		if (ned == null) {
-			ned = conf.get(DISAMB_HDFS_OPT);
-		}
-		
 		keyOut = instantiateKeyOutput();
 		valOut = instantiateValueOutput();
 	}
