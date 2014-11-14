@@ -59,6 +59,42 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 				.withDescription("path to dexter configuration file")
 				.create(DEXTER_CONF_OPT);
 		opts.addOption(dexterOpt);
+		
+		Option mapperOpt = OptionBuilder.withArgName("mapperconfiguration").hasArg(true)
+				.withDescription("class of input parser")
+				.create(MAPPER_OPT);
+		opts.addOption(mapperOpt);
+		
+		Option inpformatOpt = OptionBuilder.withArgName("inputformat").hasArg(true)
+				.withDescription("class of input format")
+				.create(INPUTFORMAT_OPT);
+		opts.addOption(inpformatOpt);
+		
+		Option outformatOpt = OptionBuilder.withArgName("outputformat").hasArg(true)
+				.withDescription("class of output format")
+				.create(OUTPUTFORMAT_OPT);
+		opts.addOption(outformatOpt);
+		
+		Option keyInOpt = OptionBuilder.withArgName("mapperkeyOpt").hasArg(true)
+				.withDescription("class of key for mapper")
+				.create(KEYIN_OPT);
+		opts.addOption(keyInOpt);
+		
+		Option valInOpt = OptionBuilder.withArgName("mapperValueOpt").hasArg(true)
+				.withDescription("class of value for mapper")
+				.create(VALUEIN_OPT);
+		opts.addOption(valInOpt);
+		
+		Option keyOutOpt = OptionBuilder.withArgName("keyOutOpt").hasArg(true)
+				.withDescription("class of key of output")
+				.create(KEYOUT_OPT);
+		opts.addOption(keyOutOpt);
+		
+		Option valOutOpt = OptionBuilder.withArgName("valOutOpt").hasArg(true)
+				.withDescription("class of value of output")
+				.create(VALUEOUT_OPT);
+		opts.addOption(valOutOpt);
+		
 		return opts;
 	}
 

@@ -103,7 +103,6 @@ public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT>
 			EntityMatchList eml = tagger.tag(new DexterLocalParams(), doc);
 
 			AnnotatedDocument adoc = new AnnotatedDocument(doc);
-
 			
 			annotate(adoc, eml, entitiesToAnnotate, addWikinames, minConfidence);
 			
