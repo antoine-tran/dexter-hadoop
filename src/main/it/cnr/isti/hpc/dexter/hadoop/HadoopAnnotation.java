@@ -108,6 +108,7 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		inputFormatClassName = command.getOptionValue(INPUTFORMAT_OPT);
 		Class inputFormatClass = Class.forName(inputFormatClassName);
 		
 		String outputFormatClassname = null;
@@ -116,6 +117,7 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		outputFormatClassname = command.getOptionValue(OUTPUTFORMAT_OPT);
 		Class outputFormatClass = Class.forName(outputFormatClassname);
 		
 		String mapKeyOutClassName = null;
@@ -124,6 +126,7 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		mapKeyOutClassName = command.getOptionValue(KEYIN_OPT);
 		Class mapKeyOutClass = Class.forName(mapKeyOutClassName);
 		
 		String mapValOutClassName = null;
@@ -132,6 +135,7 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		mapValOutClassName = command.getOptionValue(VALUEIN_OPT);
 		Class mapValOutClass = Class.forName(mapValOutClassName);
 		
 		String keyOutClassName = null;
@@ -140,6 +144,7 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		keyOutClassName = command.getOptionValue(KEYOUT_OPT);
 		Class keyOutClass = Class.forName(keyOutClassName);
 		
 		String valOutClassName = null;
@@ -148,14 +153,16 @@ public class HadoopAnnotation extends JobConfig implements Tool {
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		valOutClassName = command.getOptionValue(VALUEOUT_OPT);
 		Class valOutClass = Class.forName(valOutClassName);
 		
 		String mapClassName = null;
-		if (!command.hasOption(VALUEOUT_OPT)) {
+		if (!command.hasOption(MAPPER_OPT)) {
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp(getClass().getName(), opts);
 			ToolRunner.printGenericCommandUsage(System.out);
 		}
+		mapClassName = command.getOptionValue(MAPPER_OPT);
 		Class mapClass = Class.forName(mapClassName);
 		
 		Job job = setup(jobName, this.getClass(),
