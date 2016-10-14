@@ -31,7 +31,7 @@ import tuan.terrier.HadoopDistributedFileSystem;
 public abstract class AnnotateMapper<KEYIN,VALIN,KEYOUT,VALOUT> 
 		extends Mapper<KEYIN,VALIN,KEYOUT,VALOUT> {
 	
-	private static Logger LOG = LoggerFactory.getLogger(AnnotateMapper.class);
+	protected static Logger LOG = LoggerFactory.getLogger(AnnotateMapper.class);
 	
 	public static final String DISAMB_HDFS_OPT = "dexter.disambiguator";
 	public static final String DEXTER_CONF_PATH_HDFS = "dexter-conf.path";

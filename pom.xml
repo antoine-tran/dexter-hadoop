@@ -144,10 +144,10 @@
 						<phase>validate</phase>
 						<id>install-hpc-utils</id>
 						<configuration>
-							<file>${project.basedir}/lib/hpc-utils-0.0.7.jar</file>
+							<file>${project.basedir}/lib/hpc-utils-0.0.5.jar</file>
 							<groupId>it.cnr.isti.hpc</groupId>
 							<artifactId>hpc-utils</artifactId>
-							<version>0.0.7</version>
+							<version>0.0.5</version>
 							<packaging>jar</packaging>
 							<generatePom>true</generatePom>
 						</configuration>
@@ -447,7 +447,7 @@
 		<dependency>
 			<groupId>it.cnr.isti.hpc</groupId>
 			<artifactId>hpc-utils</artifactId>
-			<version>0.0.7</version>
+			<version>0.0.5</version>
 		</dependency>
 
 		<dependency>

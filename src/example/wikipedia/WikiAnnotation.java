@@ -35,7 +35,11 @@ public class WikiAnnotation extends HadoopAnnotation {
 		// There is only one field of main content of the article
 		public Iterable<String> contents(WikipediaPage value) {
 			Set<String> contents = new HashSet<>();
-			contents.add(value.getContent());
+			try {
+				contents.add(value.getContent());
+			} catch (Exception e) {
+				LOG.warn("Error in reading page " + value.getTitle() + ". Skip !");
+			}
 			return contents;			
 		}
 
@@ -97,7 +101,7 @@ public class WikiAnnotation extends HadoopAnnotation {
 		newArgs.add("-outval");
 		newArgs.add("tuan.hadoop.io.IntFloatArrayListWritable");
 		newArgs.add("-mapper");
-		newArgs.add("de.l3s.streamcorpus.mapreduce.WikiAnnotation$MyMapper");
+		newArgs.add("wikipedia.WikiAnnotation$MyMapper");
 		
 		try {
 			ToolRunner.run(new WikiAnnotation(), 
